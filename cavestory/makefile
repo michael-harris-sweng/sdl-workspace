@@ -1,6 +1,6 @@
 SRC = source/**/*.cpp
 INCLUDE = source/headers
-OUT = build/hello_world
+OUT = build/cavestory
 
 #This is the target that compiles our executable
 all : $(SRC)
