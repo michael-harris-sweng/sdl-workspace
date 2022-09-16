@@ -18,7 +18,7 @@
 
 <hr />
 
-### Windows (MinGW)
+### Windows (MinGW & VS Code)
 <details>
     <summary>Instructions</summary>
 
@@ -50,10 +50,32 @@ SDL2-devel-2.24.0-mingw.tar.gz](https://github.com/libsdl-org/SDL/releases/tag/r
 8. Clone Repo
    * Make a development folder, for example `D:\dev\`.
    * Inside the dev folder, run `gcl git@github.com:michael-harris-sweng/sdl-workspace.git`.
-9. Build and Execution
-   * `cd /d/dev/sdl-workspace/cavestory`
+9. Build and Execution (CLI)
+   * Open `cmder` using profile `bash::mingw64` and run `cd /d/dev/sdl-workspace/cavestory`
    * Run `make` from `cavestory/`
    * Run `./cavestory.exe`
+   * To debug in the CLI, run `gdb ./cavestory.exe`
+10. Install VS Code
+   * Download latest from [thei site](https://code.visualstudio.com/download).
+   * Open a new VS Code workspace in `sdl-workspace/`.
+   * Install the following extensions: [`C/C++`, `Makefile Tools`].
+   * Update `@ext:ms-vscode.makefile-tools` settings
+      * `Makefile Path` = `./cavestory/makefile`
+      * `Make Director` = `./cavestory`
+   * Create `.vscode/settings.json` with:
+      ```JSON
+      {
+         "makefile.configurations": [
+            {
+                  "name": "all",
+                  "makeArgs": []
+            },
+         ]
+      }
+      ```
+   * Install `GNUMake` from [their site](http://gnuwin32.sourceforge.net/packages/make.htm).
+   * Add the install path to your system path (e.g. `C:\Program Files (x86)\GnuWin32\bin`).
+   * Select `[all]`, `[all_win]`, and `[build\cavestory.exe]` for Configuration, Build Target, and Launch Target on the Makefile tab.
 </details>
 
 <hr />
