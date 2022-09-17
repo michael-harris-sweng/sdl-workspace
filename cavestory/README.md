@@ -37,6 +37,8 @@
    * `oh-my-zsh` - Run [install script](https://ohmyz.sh/#install)
    * Copy [dotfiles/zsh/.zshrc](https://github.com/michael-harris-sweng/dotfiles/blob/master/zsh/.zshrc) to local `~/.zshrc`
    * Copy [dotfiles/git/.gitconfig](https://github.com/michael-harris-sweng/dotfiles/blob/master/git/.gitconfig) to local `~/.gitconfig`, un-commenting the `core.autocrlf = true` config.
+   * Copy the changes from [dotfiles/nano/nanorc](https://github.com/michael-harris-sweng/dotfiles/blob/master/nano/nanorc) to `/etc/nanorc`.
+   * Add `zsh` to the end of your `~/.bashrc` config to run `zsh` on startup.
 6. Install SDL 2.0
    * Download the latest [release of
 SDL2-devel-2.24.0-mingw.tar.gz](https://github.com/libsdl-org/SDL/releases/tag/release-2.24.0). 
@@ -56,7 +58,7 @@ SDL2-devel-2.24.0-mingw.tar.gz](https://github.com/libsdl-org/SDL/releases/tag/r
    * Run `./cavestory.exe`
    * To debug in the CLI, run `gdb ./cavestory.exe`
 10. Install VS Code
-   * Download latest from [thei site](https://code.visualstudio.com/download).
+   * Download latest from [their site](https://code.visualstudio.com/download).
    * Open a new VS Code workspace in `sdl-workspace/`.
    * Install the following extensions: [`C/C++`, `Makefile Tools`].
    * Update `@ext:ms-vscode.makefile-tools` settings
