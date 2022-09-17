@@ -39,7 +39,7 @@ compile:
 default: compile
 
 clean:
-	${RM} ${TARGET}/${OUT}
+	${RM} ${TARGET}
 
 test: compile
 	${TARGET}/${OUT}

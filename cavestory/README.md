@@ -60,24 +60,46 @@ SDL2-devel-2.24.0-mingw.tar.gz](https://github.com/libsdl-org/SDL/releases/tag/r
 10. Install VS Code
    * Download latest from [their site](https://code.visualstudio.com/download).
    * Open a new VS Code workspace in `sdl-workspace/`.
+11. Setup Makefile Extensions
    * Install the following extensions: [`C/C++`, `Makefile Tools`].
    * Update `@ext:ms-vscode.makefile-tools` settings
       * `Makefile Path` = `./cavestory/makefile`
       * `Make Director` = `./cavestory`
-   * Create `.vscode/settings.json` with:
-      ```JSON
+   * Select `Build target: [compile_win]`, and `Launch target: [build\cavestory.exe]` on the Makefile tab.
+   * You can now compile and run by pressing `Makefile: Run the selected binary target in the terminal`
+12. Setup GDB debugging
+   * Create `sdl-workspace/.vscode/launch.json` with the following:
+      ```
       {
-         "makefile.configurations": [
+         // Use IntelliSense to learn about possible attributes.
+         // Hover to view descriptions of existing attributes.
+         // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+         "version": "0.2.0",
+         "configurations": [
             {
-                  "name": "all",
-                  "makeArgs": []
-            },
+                  "name": "Debug Cavestory",
+                  "type": "cppdbg",
+                  "request": "launch",
+                  "program": "${workspaceFolder}/cavestory/build/cavestory.exe",
+                  "args": [],
+                  "stopAtEntry": false,
+                  "cwd": "${workspaceFolder}/cavestory",
+                  "environment": [],
+                  "externalConsole": false,
+                  "MIMode": "gdb",
+                  "miDebuggerPath": "C:/msys64/usr/bin/gdb.exe",
+                  "setupCommands": [
+                     {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                     }
+                  ],
+            }
          ]
       }
       ```
-   * Install `GNUMake` from [their site](http://gnuwin32.sourceforge.net/packages/make.htm).
-   * Add the install path to your system path (e.g. `C:\Program Files (x86)\GnuWin32\bin`).
-   * Select `[all]`, `[all_win]`, and `[build\cavestory.exe]` for Configuration, Build Target, and Launch Target on the Makefile tab.
+   * You can now debug the executable created above by debugging (F5). 
 </details>
 
 <hr />
