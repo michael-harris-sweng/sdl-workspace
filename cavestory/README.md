@@ -29,7 +29,7 @@
 3. Create a new `cmder` task for `mingw`:
    * Name: `bash::mingw64`
    * Task parameters: `/icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"`
-   * Commands: `-new_console:d:D:\dev set CHERE_INVOKING=1 & set MSYSTEM=MINGW64 & set MSYS2_PATH_TYPE=inherit & "c:\msys64\usr\bin\bash.exe" --login -i`
+   * Commands: `-new_console:d:D:\dev set CHERE_INVOKING=1 & set MSYSTEM=MINGW64 & set MSYS2_PATH_TYPE=inherit & "c:\msys64\usr\bin\bash.exe" --login -i zsh`
 4. Install requires packages:
    * `pacman -S <package>`
    * Where `<package>` is each of [`zsh`, `man`, `neofetch`, `git`, `make`, `mingw-w64-x86_64-gcc`]
