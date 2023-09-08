@@ -1,26 +1,56 @@
-#OBJS specifies which files to compile as part of the project
-OBJS = ./source/**/*.cpp
+#
+# C++ makefile to build on windows and unix.
+#
+SRC = ./source
+CLASSES = **/*.cpp
+TARGET = ./build
+RM = rm -rf
+MKDIR = mkdir -p build
 
-#CC specifies which compiler we're using
+# C/C++ compiler program.
 CC = g++
 
-#INCLUDE_PATHS specifies the additional include paths we'll need
-INCLUDE_PATHS = -I./source/headers -I/c/mingw_dev_lib/include/SDL2
 
-#LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -L/c/mingw_dev_lib/lib
+# Paths to include directories.
+INCLUDE_PATHS = -I${SRC}/headers
+INCLUDE_PATHS_WIN = -I/c/mingw_dev_lib/include/SDL2
 
-#COMPILER_FLAGS specifies the additional compilation options we're using
+# Paths to additional libraries.
+LIBRARY_PATHS_WIN = -L/c/mingw_dev_lib/lib
+
+# Compiler flags to pass to ${CC}.
 # -w suppresses all warnings
 # -Wl,-subsystem,windows gets rid of the console window
-COMPILER_FLAGS = -w -Wl,-subsystem,windows
+COMPILER_FLAGS = -w
+COMPILER_FLAGS_WIN = -Wl,-subsystem,windows
 
-#LINKER_FLAGS specifies the libraries we're linking against
-LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2
+# Library flags to link.
+LINKER_FLAGS = -lSDL2 -lSDL2main
+LINKER_FLAGS_WIN = -lmingw32
 
-#OBJ_NAME specifies the name of our exectuable
-OBJ_NAME = cavestory.exe
+# Output object name
+OUT = cavestory
+OUT_WIN = cavestory.exe
 
-#This is the target that compiles our executable
-all : $(OBJS)
-	$(CC) $(OBJS) $(INCLUDE_PATHS) $(LIBRARY_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJ_NAME)
+# Targets to clean, compile, and test the program.
+compile:
+	${MKDIR} && $(CC) ${SRC}/$(CLASSES) $(INCLUDE_PATHS) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OUT)
+
+default: compile
+
+clean:
+	${RM} ${TARGET}
+
+test: compile
+	${TARGET}/${OUT}
+
+all: clean default test
+
+# Windows targets extending above Unix targets.
+compile_win:
+	$(CC) ${SRC}/$(CLASSES) $(INCLUDE_PATHS) $(INCLUDE_PATHS_WIN) $(LIBRARY_PATHS_WIN) $(COMPILER_FLAGS) $(COMPILER_FLAGS_WIN) $(LINKER_FLAGS) $(LINKER_FLAGS_WIN) -o $(TARGET)/$(OUT_WIN)
+
+test_win: compile_win
+	${TARGET}/${OUT_WIN}
+
+all_win: compile_win test_win
